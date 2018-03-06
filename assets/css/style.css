@@ -1,0 +1,14 @@
+/* START CSS*/
+
+.head{
+    background-color: white;
+    color: seagreen;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size:100px;
+    text-align: center;
+    width: 600px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+/* END CSS*/
