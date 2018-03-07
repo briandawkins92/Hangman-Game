@@ -14,18 +14,11 @@
     color:seagreen;
     text-align: center;
     background-color:white;
-    width: 400px; 
+    width: 400px;
+    height:auto;
     margin-left:auto;
     margin-right:auto;
     padding: 25px;
 }
-.game{
-    color:seagreen;
-    text-align: center;
-    background-color:white;
-    width: 400px; 
-    margin-left:auto;
-    margin-right:auto;
-    padding: 25px;
-}
+
 /* END CSS*/
