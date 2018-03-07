@@ -17,8 +17,11 @@ document.onkeyup = function(event) {
     "<p>Current Word:" + currentWord + "</p>" +
     "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
     "<p>Already Guessed:" + alreadyGuessed + "</p>";
-   
+
     document.querySelector("#beginning").innerHTML = html;
+        var hangmanWord = hangmanChoices[Math.floor(Math.random() * hangmanChoices.length)];
+    console.log(hangmanWord);
+
 };
 
 
