@@ -29,7 +29,7 @@ document.onkeyup = function(event) {
     hangmanWord = chosenWord.replace(/\D/g, "_ ");
     console.log(chosenWord);
     console.log(hangmanWord);
-    
+
 
 
     var html =
@@ -39,10 +39,15 @@ document.onkeyup = function(event) {
     "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
     "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
 
+  
+    
+
+
+
     document.querySelector("#beginning").innerHTML = html;
 
-
 };
+
 
 
 
