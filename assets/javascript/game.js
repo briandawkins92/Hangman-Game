@@ -2,51 +2,82 @@
 
 var hangmanArray = ["lagoon", "breeze", "island", "coconut", "sunscreen", "sunset", "snorkel"];
 
-// var hangmanChoices = {
-//     lagoon: "_ _ _ _ _ _",
-//     breeze: "_ _ _ _ _ _",
-//     island: "_ _ _ _ _ _",
-//     coconut: "_ _ _ _ _ _ _",
-//     sunscreen: "_ _ _ _ _ _ _ _ _",
-//     sunset: "_ _ _ _ _ _",
-//     snorkel: "_ _ _ _ _ _ _"
-
-
-   
-// };
-
-
 var wins = 0;
 var losses = 0;
 var currentWord = [];
 var guessesRemaining = 15;
 var alreadyGuessed = [];
-document.onkeyup = function(event) {
-    // var userGuess = event.key;
 
-   
-    var chosenWord = hangmanArray[Math.floor(Math.random() * hangmanArray.length)];
-    hangmanWord = chosenWord.replace(/\D/g, "_ ");
-    console.log(chosenWord);
-    console.log(hangmanWord);
+var chosenWord = hangmanArray[Math.floor(Math.random() * hangmanArray.length)];
+// hangmanWord = chosenWord.replace(/\D/g, "_ ");
 
 
 
+console.log(chosenWord);
+// console.log(hangmanWord);
+function once(fn, context) { 
+	var result;
+
+	return function() { 
+		if(fn) {
+			result = fn.apply(context || this, arguments);
+			fn = null;
+		}
+
+		return result;
+	};
+}
+document.onclick = once(function(event) {
+    
     var html =
     "<p>Wins: " + wins + "</p>" +
     "<p>Losses: " + losses + "</p>" +
-    "<p>Current Word:" + hangmanWord + "</p>" +
+    "<p>Current Word:" + chosenWord.replace(/\D/g, "_ "); + "</p>" +
     "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
     "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
 
-  
+    document.querySelector("#beginning").innerHTML = html;
+    
+});
+
+document.onkeyup = function(event) {
+
+    var userGuess = event.key;
+    console.log(userGuess);
+
+   for (var i = 0; i < chosenWord.length; i++) {
+        if(userGuess==chosenWord.charAt(i)) {
+           var guessed = chosenWord.replace(//, event.key);  
+            // console.log(chosenWord);
+        }
+
+    };
+
+
+ var html =
+    "<p>Wins: " + wins + "</p>" +
+    "<p>Losses: " + losses + "</p>" +
+    "<p>Current Word:" + guessed + "</p>" +
+    "<p>Guesses Remaining:" + guessesRemaining-- + "</p>" +
+    "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
+
+    document.querySelector("#beginning").innerHTML = html;
+
+
+
+    //    if (chosenWord.includes = userGuess) {
+//        console.log("hello");
+//         guessesRemaining++;
+//    }
+    
+};
     
 
 
 
-    document.querySelector("#beginning").innerHTML = html;
+    
 
-};
+
 
 
 

@@ -20,5 +20,9 @@
     margin-right:auto;
     padding: 25px;
 }
+#body{
+    background-repeat: no-repeat;
+    background-size:cover;
+}
 
 /* END CSS*/
