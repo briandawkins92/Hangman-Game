@@ -32,7 +32,7 @@ document.onclick = once(function(event) {
     var html =
     "<p>Wins: " + wins + "</p>" +
     "<p>Losses: " + losses + "</p>" +
-    "<p>Current Word:" + chosenWord.replace(/\D/g, "_ "); + "</p>" +
+    "<p #word>Current Word:" + chosenWord.replace(/\D/g, "_ "); + "</p>" +
     "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
     "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
 
@@ -45,20 +45,23 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     console.log(userGuess);
 
+    // var word = document.getElementById("word");
    for (var i = 0; i < chosenWord.length; i++) {
         if(userGuess==chosenWord.charAt(i)) {
-           var guessed = chosenWord.replace(//, event.key);  
-            // console.log(chosenWord);
+            // var newDiv = document.createElement("p");
+            // newDiv.textContent = userGuess;
+            // word.appendChild(newDiv);
+            console.log(chosenWord);
         }
-
+// do append child!!! // 
     };
 
 
  var html =
     "<p>Wins: " + wins + "</p>" +
     "<p>Losses: " + losses + "</p>" +
-    "<p>Current Word:" + guessed + "</p>" +
-    "<p>Guesses Remaining:" + guessesRemaining-- + "</p>" +
+    "<p>Current Word:" + chosenWord + "</p>" +
+    "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
     "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
 
     document.querySelector("#beginning").innerHTML = html;
