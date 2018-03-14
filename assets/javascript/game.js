@@ -1,88 +1,99 @@
 /* BEGIN JAVASCRIPT*/
 
-var hangmanArray = ["lagoon", "breeze", "island", "coconut", "sunscreen", "sunset", "snorkel"];
+var hangmanArray = ["sand", "waves", "island", "crab", "shark", "snorkel"];
 
-var wins = 0;
-var losses = 0;
-var currentWord = [];
-var guessesRemaining = 15;
-var alreadyGuessed = [];
+var wins = 0,
+currentWord = [""],
+guessesRemaining = 10,
+alreadyGuessed = [""],
+
+document,onload = function() {
+
+
+    var html =
+    "<p>" + "Press Any Key To Get Started!" + "</p>"+
+    "<p>Wins: " + wins + "</p>" ;
+document.querySelector("#wins").innerHTML = html;
 
 var chosenWord = hangmanArray[Math.floor(Math.random() * hangmanArray.length)];
-// hangmanWord = chosenWord.replace(/\D/g, "_ ");
-
-
-
-console.log(chosenWord);
-// console.log(hangmanWord);
-function once(fn, context) { 
-	var result;
-
-	return function() { 
-		if(fn) {
-			result = fn.apply(context || this, arguments);
-			fn = null;
-		}
-
-		return result;
-	};
+var secretWord = chosenWord.split( "");
+for(var i=0; i < secretWord.length; i++) {
+secretWord[i] = secretWord[i].replace(/\D/g, "_ "); 
 }
-document.onclick = once(function(event) {
-    
-    var html =
-    "<p>Wins: " + wins + "</p>" +
-    "<p>Losses: " + losses + "</p>" +
-    "<p #word>Current Word:" + chosenWord.replace(/\D/g, "_ "); + "</p>" +
-    "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
-    "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
+var noDashesWord = secretWord.join("");
 
-    document.querySelector("#beginning").innerHTML = html;
-    
-});
+var htmlBody=
+    "<p>Current Word: " + noDashesWord + "</p>" +
+    "<p>Guesses Remaining: " + guessesRemaining + "</p>" +
+    "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
+    document.querySelector("#beginning").innerHTML = htmlBody;
 
 document.onkeyup = function(event) {
 
-    var userGuess = event.key;
-    console.log(userGuess);
-
-    // var word = document.getElementById("word");
-   for (var i = 0; i < chosenWord.length; i++) {
-        if(userGuess==chosenWord.charAt(i)) {
-            // var newDiv = document.createElement("p");
-            // newDiv.textContent = userGuess;
-            // word.appendChild(newDiv);
-            console.log(chosenWord);
-        }
-// do append child!!! // 
-    };
-
-
- var html =
-    "<p>Wins: " + wins + "</p>" +
-    "<p>Losses: " + losses + "</p>" +
-    "<p>Current Word:" + chosenWord + "</p>" +
-    "<p>Guesses Remaining:" + guessesRemaining + "</p>" +
-    "<p>Already Guessed:" + alreadyGuessed.push(); + "</p>";
-
+    var userGuess = event.key
+  
+    var html =
+        "<p>Current Word: " + noDashesWord + "</p>" +
+        "<p>Guesses Remaining: " + guessesRemaining + "</p>" +
+        "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
     document.querySelector("#beginning").innerHTML = html;
-
-
-
-    //    if (chosenWord.includes = userGuess) {
-//        console.log("hello");
-//         guessesRemaining++;
-//    }
     
+    for(var i=0; i < secretWord.length; i++) {
+    if(userGuess === chosenWord[i]) {
+        secretWord[i] = userGuess;
+        var noDashesWord = secretWord.join("");
+        } else { 
+        var noDashesWord = secretWord.join("");
+        }
+    }
+    alreadyGuessed.push(userGuess);
+
+    if (guessesRemaining === 0){
+      var losePlayAgain = confirm("You Lose! Press OK to Play Again");
+
+    }
+
+    if (losePlayAgain){
+       location.reload();
+    }
+    var html =
+
+            "<p>Current Word: " + noDashesWord + "</p>" +
+            "<p>Guesses Remaining: " + guessesRemaining-- + "</p>" +
+            "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
+        document.querySelector("#beginning").innerHTML = html;
+    
+    if (noDashesWord === chosenWord) {
+        var congrats = confirm("Congrats! You Win! Press Ok to Play Again");
+        
+        wins++;
+        currentWord = [""];
+        guessesRemaining = 10;
+        console.log(guessesRemaining)
+        alreadyGuessed = [""];
+        
+        chosenWord = hangmanArray[Math.floor(Math.random() * hangmanArray.length)];
+        secretWord = chosenWord.split( "");
+        for(var i=0; i < secretWord.length; i++) {
+            secretWord[i] = secretWord[i].replace(/\D/g, "_ "); 
+        }
+        noDashesWord = secretWord.join("");
+
+
+        var html =
+        "<p>" + "Press Any Key To Get Started!" + "</p>"+
+        "<p>Wins: " + wins + "</p>" ;
+        document.querySelector("#wins").innerHTML = html;
+        var html =
+
+        "<p>Current Word: " + noDashesWord + "</p>" +
+        "<p>Guesses Remaining: " + guessesRemaining-- + "</p>" +
+        "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
+    document.querySelector("#beginning").innerHTML = html;
+   
+    }
+}
 };
-    
-
-
-
-    
-
-
-
-
-
+  
 
 /* END JAVASCRIPT*/
