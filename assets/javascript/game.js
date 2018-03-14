@@ -2,19 +2,19 @@
 
 var hangmanArray = ["sand", "waves", "island", "crab", "shark", "snorkel"];
 
+// Establish InnerHTML VARs // 
 var wins = 0,
 currentWord = [""],
 guessesRemaining = 10,
 alreadyGuessed = [""],
 
 document,onload = function() {
-
-
     var html =
     "<p>" + "Press Any Key To Get Started!" + "</p>"+
     "<p>Wins: " + wins + "</p>" ;
-document.querySelector("#wins").innerHTML = html;
+    document.querySelector("#wins").innerHTML = html;
 
+// Create Word and Replace with Dashes // 
 var chosenWord = hangmanArray[Math.floor(Math.random() * hangmanArray.length)];
 var secretWord = chosenWord.split( "");
 for(var i=0; i < secretWord.length; i++) {
@@ -37,7 +37,8 @@ document.onkeyup = function(event) {
         "<p>Guesses Remaining: " + guessesRemaining + "</p>" +
         "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
     document.querySelector("#beginning").innerHTML = html;
-    
+
+//Determine if the User Guess is one of the characters of the word // 
     for(var i=0; i < secretWord.length; i++) {
     if(userGuess === chosenWord[i]) {
         secretWord[i] = userGuess;
@@ -48,21 +49,7 @@ document.onkeyup = function(event) {
     }
     alreadyGuessed.push(userGuess);
 
-    if (guessesRemaining === 0){
-      var losePlayAgain = confirm("You Lose! Press OK to Play Again");
-
-    }
-
-    if (losePlayAgain){
-       location.reload();
-    }
-    var html =
-
-            "<p>Current Word: " + noDashesWord + "</p>" +
-            "<p>Guesses Remaining: " + guessesRemaining-- + "</p>" +
-            "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
-        document.querySelector("#beginning").innerHTML = html;
-    
+    // Determine if user wins // 
     if (noDashesWord === chosenWord) {
         var congrats = confirm("Congrats! You Win! Press Ok to Play Again");
         
@@ -79,7 +66,6 @@ document.onkeyup = function(event) {
         }
         noDashesWord = secretWord.join("");
 
-
         var html =
         "<p>" + "Press Any Key To Get Started!" + "</p>"+
         "<p>Wins: " + wins + "</p>" ;
@@ -92,6 +78,24 @@ document.onkeyup = function(event) {
     document.querySelector("#beginning").innerHTML = html;
    
     }
+
+// Determine if user ran out of guesses and lost// 
+    if (guessesRemaining === 0) {
+      var losePlayAgain = confirm("You Lose! Press OK to Play Again");
+
+    }
+
+    if (losePlayAgain){
+       location.reload();
+    }
+    var html =
+
+            "<p>Current Word: " + noDashesWord + "</p>" +
+            "<p>Guesses Remaining: " + guessesRemaining-- + "</p>" +
+            "<p>Already Guessed: " + alreadyGuessed.join(""); + "</p>";
+        document.querySelector("#beginning").innerHTML = html;
+    
+    
 }
 };
   
